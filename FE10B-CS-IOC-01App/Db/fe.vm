@@ -1,0 +1,545 @@
+## fe.vm
+## Velocity Template to generate a Front End database substitution file
+## Ian Gillingham - 13/05/2010
+##
+## $Author:$
+## $Date: $
+## $Id: $
+## $Name:  $
+## $Revision: $
+
+## Title text for substitution file...
+# Front End EPICS substitution file
+# Generated from Velocity template - fe.vm
+
+#set( $front_end = "10B" )
+
+# Switch to force valve-sub.vm and vacuumSpace-b-sub.vm to use _asyn suffixed templates for FINS protocol
+#set( $VLVCC_ASYN = true)
+
+## Vacuum Spaces
+#set ($FE_AREA = $front_end)
+#parse("vacuumSpace-b-sub.vm")
+
+## Gauge controllers and gauges
+#set( $GTYPE = "CONTROLLER")
+#set( $GCTLR_LIST = ["FE${front_end}-VA-GCTLR-01", "FE${front_end}-VA-GCTLR-02", "FE${front_end}-VA-GCTLR-03"])
+#set( $PORT_LIST = ["ts1_1", "ts1_2" ,"ts1_3"])
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+## IMGs
+#set( $GTYPE = "IMG")
+#set ($IMG_LIST     =["FE${front_end}-VA-IMG-01"                    ,"FE${front_end}-VA-IMG-02"                    ,"FE${front_end}-VA-IMG-03"                    ,"FE${front_end}-VA-IMG-04"                    ,"FE${front_end}-VA-IMG-05"                    ,"FE${front_end}-VA-IMG-06"                    ] )
+#set ($NOWRITE_LIST =["FE${front_end}-VA-GAUGE-01:ILKSETSP:NOWRITE" ,"FE${front_end}-VA-GAUGE-02:ILKSETSP:NOWRITE" ,"FE${front_end}-VA-GAUGE-03:ILKSETSP:NOWRITE" ,"FE${front_end}-VA-GAUGE-04:ILKSETSP:NOWRITE" ,"FE${front_end}-VA-GAUGE-05:ILKSETSP:NOWRITE" ,"FE${front_end}-VA-GAUGE-06:ILKSETSP:NOWRITE" ] )
+#set ($PORT_LIST    =["ts1_1"                                       ,"ts1_1"                                       ,"ts1_2"                                       ,"ts1_3"                                       ,"ts1_2"                                       ,"ts1_3"                                       ] )
+#set ($CHAN_LIST    =["1"                                           ,"3"                                           ,"1"                                           ,"1"                                           ,"3"                                           ,"3"                                           ] )
+#set ($CTLCHAN_LIST =["0"                                           ,"1"                                           ,"0"                                           ,"0"                                           ,"1"                                           ,"1"                                           ] )
+##  C1 => 0, C2 => 1
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+## PIRGs
+#set( $GTYPE = "PIRG")
+#set ($PIRG_LIST =["FE${front_end}-VA-PIRG-01" ,"FE${front_end}-VA-PIRG-02" ,"FE${front_end}-VA-PIRG-03" ,"FE${front_end}-VA-PIRG-04" ,"FE${front_end}-VA-PIRG-05" ,"FE${front_end}-VA-PIRG-06" ] )
+#set ($PORT_LIST =["ts1_1"                     ,"ts1_1"                     ,"ts1_2"                     ,"ts1_3"                     ,"ts1_2"                     ,"ts1_3"                     ] )
+#set ($CHAN_LIST =["5"                         ,"6"                         ,"5"                         ,"5"                         ,"6"                         ,"6"                         ] )
+#set ($SIMULATED =false                                                                                                                                                                           )
+#parse("vacuumGauge-b-sub.vm")
+
+## Combination gauges
+#set( $GTYPE = "COMBINATION")
+#set( $DOMAIN = "FE${front_end}" )
+#set( $ID_LIST =   ["01"                            , "02"                            , "03"                            , "04"                            , "05"                            , "06"                            ])
+#set( $ADC_LIST =  ["FE10B-CS-ADC-02:CHANNEL1:VALUE", "FE10B-CS-ADC-02:CHANNEL2:VALUE", "FE10B-CS-ADC-03:CHANNEL1:VALUE", "FE10B-CS-ADC-04:CHANNEL1:VALUE", "FE10B-CS-ADC-03:CHANNEL2:VALUE", "FE10B-CS-ADC-04:CHANNEL2:VALUE"])
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+## Relays
+#set( $GTYPE = "RELAY")
+#set ( $RELAY_LIST     = [ "FE${front_end}-VA-IMG-01:RLY1"                 , "FE${front_end}-VA-IMG-01:RLY2"               , "FE${front_end}-VA-IMG-01:RLY3"               , "FE${front_end}-VA-IMG-01:RLY4"            ] )
+#set ( $PORT_LIST      = [ "ts1_1"                                         , "ts1_1"                                       , "ts1_1"                                       , "ts1_1"                                    ] )
+#set ( $RELAY_NUM_LIST = [ "1"                                             , "2"                                           , "3"                                           , "4"                                        ] )
+#set ( $RELAY_DESC     = [ "Valve I/L On"                                  , "MPS I/L 1"                                   , "MPS I/L 2"                                   , "RGA I/L"                                  ] )
+#set ( $RELAY_OFF_DESC = [ "Valve I/L Off"                                 , ""                                            , ""                                            , ""                                         ] )
+#set ( $RELAY_LEVEL    = [ "1.0e-6"                                        , "1.0e-7"                                      , "1.0e-7"                                      , "1.0e-4"                                   ] )
+#set ( $RELAY_DRVH     = [ "1.2e-2"                                        , "1.2e-2"                                      , "1.2e-2"                                      , "1.2e-2"                                   ] )
+#set ( $RELAY_DRVL     = [ "2.7e-10"                                       , "2.7e-10"                                     , "2.7e-10"                                     , "2.7e-10"                                  ] )
+#set ( $RELAY_HOPR     = [ "1.2e-2"                                        , "1.2e-2"                                      , "1.2e-2"                                      , "1.2e-2"                                   ] )
+#set ( $RELAY_LOPR     = [ "2.7e-10"                                       , "2.7e-10"                                     , "2.7e-10"                                     , "2.7e-10"                                  ] )
+#set ( $RELAY_HIHI     = [ "1.3e-2"                                        , "1.3e-2"                                      , "1.3e-2"                                      , "1.3e-2"                                   ] )
+#set ( $RELAY_LOLO     = [ "2.6e-10"                                       , "2.6e-10"                                     , "2.6e-10"                                     , "2.6e-10"                                  ] )
+#set ( $RELAY_HIGH     = [ "1.1e-6"                                        , "1.1e-6"                                      , "1.1e-6"                                      , "1.1e-6"                                   ] )
+#set ( $RELAY_LOW      = [ "9.0e-7"                                        , "9.0e-7"                                      , "9.0e-7"                                      , "9.0e-7"                                   ] )
+#set ( $NOWRITE_LIST   = [ "FE${front_end}-VA-GAUGE-01:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-01:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-01:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-01:ILKSETSP:NOWRITE"] )
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+#set( $GTYPE = "RELAY")
+#set ($RELAY_LIST     = [ "FE${front_end}-VA-IMG-02:RLY1"               , "FE${front_end}-VA-IMG-02:RLY2"               , "FE${front_end}-VA-IMG-02:RLY3"               , "FE${front_end}-VA-IMG-02:RLY4"               ] )
+#set ($PORT_LIST      = [ "ts1_1"                                       , "ts1_1"                                       , "ts1_1"                                       , "ts1_1"                                       ] )
+#set ($RELAY_NUM_LIST = [ "5"                                           , "6"                                           , "7"                                           , "8"                                           ] )
+#set ($NOWRITE_LIST   = [ "FE${front_end}-VA-GAUGE-02:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-02:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-02:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-02:ILKSETSP:NOWRITE" ] )
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+#set( $GTYPE          =  "RELAY")
+#set ($RELAY_LIST     =  [ "FE${front_end}-VA-IMG-03:RLY1"               , "FE${front_end}-VA-IMG-03:RLY2"               , "FE${front_end}-VA-IMG-03:RLY3"               , "FE${front_end}-VA-IMG-03:RLY4"               ] )
+#set ($PORT_LIST      =  [ "ts1_2"                                       , "ts1_2"                                       , "ts1_2"                                       , "ts1_2"                                       ] )
+#set ($RELAY_NUM_LIST =  [ "1"                                           , "2"                                           , "3"                                           , "4"                                           ] )
+#set ($NOWRITE_LIST   =  [ "FE${front_end}-VA-GAUGE-03:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-03:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-03:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-03:ILKSETSP:NOWRITE" ] )
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+#set( $GTYPE = "RELAY")
+#set( $RELAY_LIST       = [ "FE${front_end}-VA-IMG-04:RLY1"               , "FE${front_end}-VA-IMG-04:RLY2"               , "FE${front_end}-VA-IMG-04:RLY3"                , "FE${front_end}-VA-IMG-04:RLY4"                ] )
+#set( $PORT_LIST        = [ "ts1_3"                                       , "ts1_3"                                       , "ts1_3"                                        ,  "ts1_3"                                       ] )
+#set( $RELAY_NUM_LIST   = [ "1"                                           , "2"                                           ,  "3"                                           ,  "4"                                           ] )
+#set( $NOWRITE_LIST     = [ "FE${front_end}-VA-GAUGE-04:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-04:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-04:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-04:ILKSETSP:NOWRITE" ] )
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+#set( $GTYPE = "RELAY")
+#set( $RELAY_LIST       = [ "FE${front_end}-VA-IMG-05:RLY1"               , "FE${front_end}-VA-IMG-05:RLY2"               , "FE${front_end}-VA-IMG-05:RLY3"                , "FE${front_end}-VA-IMG-05:RLY4"                ] )
+#set( $PORT_LIST        = [ "ts1_2"                                       , "ts1_2"                                       , "ts1_2"                                        ,  "ts1_2"                                       ] )
+#set( $RELAY_NUM_LIST   = [ "5"                                           , "6"                                           ,  "7"                                           ,  "8"                                           ] )
+#set( $NOWRITE_LIST     = [ "FE${front_end}-VA-GAUGE-05:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-05:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-05:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-05:ILKSETSP:NOWRITE" ] )
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+#set( $GTYPE = "RELAY")
+#set( $RELAY_LIST       = [ "FE${front_end}-VA-IMG-06:RLY1"               , "FE${front_end}-VA-IMG-06:RLY2"               , "FE${front_end}-VA-IMG-06:RLY3"                , "FE${front_end}-VA-IMG-06:RLY4"                ] )
+#set( $PORT_LIST        = [ "ts1_3"                                       , "ts1_3"                                       , "ts1_3"                                        ,  "ts1_3"                                       ] )
+#set( $RELAY_NUM_LIST   = [ "5"                                           , "6"                                           ,  "7"                                           ,  "8"                                           ] )
+#set( $NOWRITE_LIST     = [ "FE${front_end}-VA-GAUGE-06:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-06:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-06:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-06:ILKSETSP:NOWRITE" ] )
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+#set( $GTYPE = "RELAY")
+#set( $RELAY_LIST     =  [ "FE${front_end}-VA-PIRG-01:RLY1" , "FE${front_end}-VA-PIRG-01:RLY2" ] )
+#set( $PORT_LIST      =  [ "ts1_1"                          , "ts1_1"                          ] )
+#set( $RELAY_NUM_LIST =  [ "9"                              , "10"                             ] )
+#set( $RELAY_DESC     =  [ "Ion Pump I/L On"                , "MPS I/L 1"                      ] )
+#set( $RELAY_OFF_DESC =  [ "Ion Pump I/L"                   , "MPS I/L"                        ] )
+#set( $RELAY_LEVEL    =  [ "1.0e-2"                         , "1.0e-2"                         ] )
+#set( $RELAY_DRVH     =  [ "950"                            , "950"                            ] )
+#set( $RELAY_DRVL     =  [ "2.7e-3"                         , "2.7e-10"                        ] )
+#set( $RELAY_HOPR     =  [ "950"                            , "950"                            ] )
+#set( $RELAY_LOPR     =  [ "2.7e-3"                         , "2.7e-10"                        ] )
+#set( $RELAY_HIHI     =  [ "119"                            , "119"                            ] )
+#set( $RELAY_LOLO     =  [ "2.6e-3"                         , "2.6e-10"                        ] )
+#set( $RELAY_HIGH     =  [ "1.1e-2"                         , "950"                            ] )
+#set( $RELAY_LOW      =  [ "2.0e-3"                         , "9.0e-7"                         ] )
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+#set( $GTYPE = "RELAY")
+#set( $RELAY_LIST     = [ "FE${front_end}-VA-PIRG-02:RLY1" , "FE${front_end}-VA-PIRG-02:RLY2" ] )
+#set( $PORT_LIST      = [ "ts1_1"                          , "ts1_1"                          ] )
+#set( $RELAY_NUM_LIST = [ "11"                             , "12"                             ] )
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+#set( $GTYPE = "RELAY")
+#set( $RELAY_LIST     = [ "FE${front_end}-VA-PIRG-03:RLY1" , "FE${front_end}-VA-PIRG-03:RLY2" ] )
+#set( $PORT_LIST      = [ "ts1_2"                          , "ts1_2"                          ] )
+#set( $RELAY_NUM_LIST = [ "9"                              , "10"                             ] )
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+#set( $GTYPE = "RELAY")
+#set( $RELAY_LIST     = [ "FE${front_end}-VA-PIRG-04:RLY1" , "FE${front_end}-VA-PIRG-04:RLY2" ] )
+#set( $PORT_LIST      = [ "ts1_3"                          , "ts1_3"                          ] )
+#set( $RELAY_NUM_LIST = [ "9"                              , "10"                             ] )
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+#set( $GTYPE = "RELAY")
+#set( $RELAY_LIST     = [ "FE${front_end}-VA-PIRG-05:RLY1" , "FE${front_end}-VA-PIRG-05:RLY2" ] )
+#set( $PORT_LIST      = [ "ts1_2"                          , "ts1_2"                          ] )
+#set( $RELAY_NUM_LIST = [ "11"                             , "12"                             ] )
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+#set( $GTYPE = "RELAY")
+#set( $RELAY_LIST     = [ "FE${front_end}-VA-PIRG-06:RLY1" , "FE${front_end}-VA-PIRG-06:RLY2" ] )
+#set( $PORT_LIST      = [ "ts1_3"                          , "ts1_3"                          ] )
+#set( $RELAY_NUM_LIST = [ "11"                             , "12"                             ] )
+#set( $SIMULATED = false )
+#parse("vacuumGauge-b-sub.vm")
+
+
+## Fast Relays
+#set( $GTYPE = "FASTRELAY")
+#set( $RELAY_LIST       = [ "FE${front_end}-VA-IMG-01"                    , "FE${front_end}-VA-IMG-02"                    , "FE${front_end}-VA-IMG-03"                     , "FE${front_end}-VA-IMG-04"                     , "FE${front_end}-VA-IMG-05"                     , "FE${front_end}-VA-IMG-06"                     ] )
+#set( $PORT_LIST        = [ "ts1_1"                                       , "ts1_1"                                       ,  "ts1_2"                                       ,  "ts1_3"                                       ,  "ts1_2"                                       ,  "ts1_3"                                       ] )
+#set( $CHAN_LIST        = [ "1"                                           , "3"                                           ,  "1"                                           ,  "1"                                           ,  "3"                                           ,  "3"                                           ] )
+#set( $FRELAY_DESC_LIST = [ "FastValve I/L"                               , "FastValve I/L"                               ,  "FastValve I/L"                               ,  "FastValve I/L"                               ,  "FastValve I/L"                               ,  "FastValve I/L"                               ] )
+#set( $FRELAY_LEVEL     = [ "1.0e-5"                                      , "1.0e-5"                                      ,  "1.0e-5"                                      ,  "1.0e-5"                                      ,  "1.0e-5"                                      ,  "1.0e-5"                                      ] )
+#set( $NOWRITE_LIST     = [ "FE${front_end}-VA-GAUGE-01:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-02:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-03:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-04:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-05:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-06:ILKSETSP:NOWRITE" ] )
+#parse("vacuumGauge-b-sub.vm")
+
+
+## MPCs
+#set( $PTYPE = "MPC")
+#set( $MPC_LIST      = [ "FE${front_end}-VA-MPC-01"  ,  "FE${front_end}-VA-MPC-02"  ,  "FE${front_end}-VA-MPC-03"                                                                                            ] )
+#set( $MPC_PORT_LIST = [ "ts1_4"                     , "ts1_5"                      , "ts1_6"                                                                                                                ] )
+#set ( $DEVICE_LIST = [ "FE${front_end}-VA-IONP-01" , "FE${front_end}-VA-IONP-02" , "FE${front_end}-VA-IONP-03" , "FE${front_end}-VA-IONP-04" , "FE${front_end}-VA-IONP-05" , "FE${front_end}-VA-IONP-06" ] )
+#set ( $PORT_LIST   = [ "ts1_4"                     , "ts1_4"                     , "ts1_5"                     , "ts1_5"                     , "ts1_6"                     , "ts1_6"                     ] )
+#set ( $UNIT_LIST   = [ "01"                        , "01"                        , "01"                        , "01"                        , "01"                        , "01"                        ] )
+#set ( $PUMP_LIST   = [ "1"                         , "2"                         , "1"                         , "2"                         , "1"                         , "2"                         ] )
+#set ( $SIZE_LIST   = [ "500"                       , "150"                       , "300"                       , "300"                       , "300"                       , "300"                       ] )
+#set ( $SP1ON_LIST  = [ "1e-7"                      , "1e-7"                      , "1e-7"                      , "1e-7"                      , "1e-7"                      , "1e-7"                      ] )
+#set ( $SP1OFF_LIST = [ "2e-7"                      , "2e-7"                      , "2e-7"                      , "2e-7"                      , "2e-7"                      , "2e-7"                      ] )
+#set ( $SP2ON_LIST  = [ "1e-7"                      , "1e-7"                      , "1e-7"                      , "1e-7"                      , "1e-7"                      , "1e-7"                      ] )
+#set ( $SP2OFF_LIST = [ "2e-7"                      , "2e-7"                      , "2e-7"                      , "2e-7"                      , "2e-7"                      , "2e-7"                      ] )
+#set( $SIMULATED = false )
+#parse("pump-sub.vm")
+
+## Pneumatic devices
+# Switch to force valve-sub.vm to use _asyn suffixed templates for FINS protocol
+#set( $VLVCC_ASYN = true)
+
+## NB: devices 7 and 8 are not on the standard I/O.
+#set( $DEVICE_LIST = ["FE${front_end}-RS-ABSB-01", "FE${front_end}-VA-VALVE-01","FE${front_end}-RS-ABSB-02","FE${front_end}-VA-VALVE-02"])
+#set( $VLVCC       = "FE${front_end}-VA-VLVCC-01")
+#set( $VLVCC_PORT =  "vlvcc_fins_port")
+## These arrays specify the interlocks text all valves in the Front End (except the fast valve, which uses a special template (below)
+##                     VALVE-01 (ABSB-01)              VALVE-02 (VALVE-01)            VALVE-03 (ABSB-02)              VALVE-06 (VALVE-02)
+#set( $PORT_LIST   = [  "vlvcc_fins_port"            , "vlvcc_fins_port"            , "vlvcc_fins_port"             , "vlvcc_fins_port"             ] )
+#set( $VALVE_LIST  = [  "1"                          , "2"                          , "3"                           , "6"                           ] )
+#set( $ilk00_list  = [ "Air press. OK"               , "Air press. OK"              , "Air press. OK"               , "Air press. OK"               ] )
+#set( $ilk01_list  = [ "Timeout"                     , "Limits Healthy"             , "Limits Healthy"              , "Limits Healthy"              ] )
+#set( $ilk02_list  = [ "5 of 6 IMG"                  , "Open Limit OK"              , "Open Limit OK"               , "Open Limit OK"               ] )
+#set( $ilk03_list  = [ "unused"                      , "Move time OK"               , "Move time OK"                , "Move time OK"                ] )
+#set( $ilk04_list  = [ "VALVE-01 open"               , "FE Init Vac (6of6)"         , "SHTR-01 open"                , "FE Init Vac (6of6)"          ] )
+#set( $ilk05_list  = [ "FVALV-01 open"               , "FE Run Vac (4of6)"          , "SHTR-02 open"                , "FE Run Vac (4of6)"           ] )
+#set( $ilk06_list  = [ "APTR-02 cool. OK"            , "FVALV-01 open"              , "VALVE-02 Open"               , "FVALV open"                  ] )
+#set( $ilk07_list  = [ "PBPM-01 cool. OK"            , "FVALV-01 Armed"             , "Noncritical BL MPS"          , "FVALV-01 Full Arm."          ] )
+#set( $ilk08_list  = [ "PBPM-02 cool. OK"            , "/FVALV Triggrd"             , "V2 Air Pressure"             , "/FVALV Triggered"            ] )
+#set( $ilk09_list  = [ "PBPM-01 Temp 01"             , "PIRG-02 OK"                 , "unused"                      , "BL Init. Vac. OK"            ] )
+#set( $ilk10_list  = [ "PBPM-02 Temp 01"             , "PIRG-03 OK"                 , "unused"                      , "BL Run Vac. OK"              ] )
+#set( $ilk11_list  = [ "/ABSB-02 fault"              , "IMG-02/IMG-03"              , "unused"                      , "PIRG-06 OK"                  ] )
+#set( $ilk12_list  = [ "ABSB-02 cool.OK"             , "IMG-04/IMG-05"              , "unused"                      , "Noncritical BL MPS"          ] )
+#set( $ilk13_list  = [ "unused"                      , "ABS not clsd/5of6 IMG"      , "unused"                      , "Grd A or /V2 Close"          ] )
+#set( $ilk14_list  = [ "unused"                      , "unused"                     , "unused"                      , "Grd B or /V2 Close"          ] )
+#set( $ilk15_list  = [ "unused"                      , "unused"                     , "unused"                      , "FE-IMG6 & BL-IMG1"           ] )
+#set( $gilk00_list = [ "FE${front_end}-VA-GAUGE-01"  , "FE${front_end}-VA-GAUGE-01" , "FE${front_end}-VA-GAUGE-01"  , "FE${front_end}-VA-GAUGE-01"  ] )
+#set( $gilk01_list = [ "FE${front_end}-VA-GAUGE-02"  , "FE${front_end}-VA-GAUGE-02" , "FE${front_end}-VA-GAUGE-02"  , "FE${front_end}-VA-GAUGE-02"  ] )
+#set( $gilk02_list = [ "FE${front_end}-VA-GAUGE-03"  , "FE${front_end}-VA-GAUGE-03" , "FE${front_end}-VA-GAUGE-03"  , "FE${front_end}-VA-GAUGE-03"  ] )
+#set( $gilk03_list = [ "FE${front_end}-VA-GAUGE-04"  , "FE${front_end}-VA-GAUGE-04" , "FE${front_end}-VA-GAUGE-04"  , "FE${front_end}-VA-GAUGE-04"  ] )
+#set( $gilk04_list = [ "FE${front_end}-VA-GAUGE-05"  , "FE${front_end}-VA-GAUGE-05" , "FE${front_end}-VA-GAUGE-05"  , "FE${front_end}-VA-GAUGE-05"  ] )
+#set( $gilk05_list = [ "FE${front_end}-VA-GAUGE-06"  , "FE${front_end}-VA-GAUGE-06" , "FE${front_end}-VA-GAUGE-06"  , "FE${front_end}-VA-GAUGE-06"  ] )
+#set( $gilk06_list = [ "FE${front_end}-VA-FVG-01/02" , "FE${front_end}-VA-FVG-01/02", "FE${front_end}-VA-FVG-01/02" , "FE${front_end}-VA-FVG-01/02" ] )
+#set( $gilk07_list = [ "FE${front_end}-VA-FVG-03/04" , "FE${front_end}-VA-FVG-03/04", "FE${front_end}-VA-FVG-03/04" , "FE${front_end}-VA-FVG-03/04" ] )
+#set( $gilk08_list = [ ""                            , ""                           , ""                            , ""                            ] )
+#set( $gilk09_list = [ ""                            , ""                           , ""                            , ""                            ] )
+#set( $gilk10_list = [ ""                            , ""                           , ""                            , ""                            ] )
+#set( $gilk11_list = [ ""                            , ""                           , ""                            , ""                            ] )
+#set( $gilk12_list = [ ""                            , ""                           , ""                            , ""                            ] )
+#set( $gilk13_list = [ ""                            , ""                           , ""                            , ""                            ] )
+#set( $gilk14_list = [ ""                            , ""                           , ""                            , ""                            ] )
+#set( $gilk15_list = [ ""                            , ""                           , ""                            , ""                            ] )
+
+#set( $SIMULATED = false )
+
+#parse("valve-sub.vm")
+
+## Fast Valve - uses special template to give more 'Arm' options
+#set( $DEVICE_LIST = ["FE${front_end}-VA-FVALV-01"])
+#set( $PORT_LIST = ["vlvcc_fins_port"])
+#set( $VALVE_LIST = ["7"])
+
+## These arrays specify the interlocks text all fast-valves in the Front End
+##                   VALVE-07 (FVALV-01)
+#set( $ilk00_list = ["Remote mode"       ] )
+#set( $ilk01_list = ["Limits Healthy"    ] )
+#set( $ilk02_list = ["Open Limit OK"     ] )
+#set( $ilk03_list = ["Move time OK"      ] )
+#set( $ilk04_list = ["FE Init. Vac. OK"  ] )
+#set( $ilk05_list = ["PIRG-03 OK"        ] )
+#set( $ilk06_list = ["PIRG-04 OK"        ] )
+#set( $ilk07_list = ["/FCTRL-01 Triggrd" ] )
+#set( $ilk08_list = ["/FCTRL-02 Triggrd" ] )
+#set( $ilk09_list = ["unused"            ] )
+#set( $ilk10_list = ["unused"            ] )
+#set( $ilk11_list = ["unused"            ] )
+#set( $ilk12_list = ["unused"            ] )
+#set( $ilk13_list = ["unused"            ] )
+#set( $ilk14_list = ["unused"            ] )
+#set( $ilk15_list = ["unused"            ] )
+#set( $gilk00_list = ["FE${front_end}-VA-GAUGE-01"] )
+#set( $gilk01_list = ["FE${front_end}-VA-GAUGE-02"] )
+#set( $gilk02_list = ["FE${front_end}-VA-GAUGE-03"] )
+#set( $gilk03_list = ["FE${front_end}-VA-GAUGE-04"] )
+#set( $gilk04_list = ["FE${front_end}-VA-GAUGE-05"] )
+#set( $gilk05_list = ["FE${front_end}-VA-GAUGE-06"] )
+#set( $gilk06_list = ["FE${front_end}-VA-FVI-01"] )
+#set( $gilk07_list = ["FE${front_end}-VA-FVI-02"] )
+#set( $gilk08_list = ["FE${front_end}-VA-FVI-03"] )
+#set( $gilk09_list = ["FE${front_end}-VA-FVI-04"] )
+#set( $gilk10_list = [""] )
+#set( $gilk11_list = [""] )
+#set( $gilk12_list = [""] )
+#set( $gilk13_list = [""] )
+#set( $gilk14_list = [""] )
+#set( $gilk15_list = [""] )
+#set( $SIMULATED = false )
+
+#parse("fast-valve-sub.vm")
+
+## PSS Shutters
+#set( $DEVICE_LIST = ["FE${front_end}-PS-SHTR-01","FE${front_end}-PS-SHTR-02"])
+#set( $PORT_LIST = ["vlvcc_fins_port","vlvcc_fins_port"])
+## set( $PORT_LIST = ["ts1_0","ts1_0"])
+## set( $VALVE_LIST = ["04","05"])
+#set( $VALVE_LIST = ["4","5"])
+
+## These arrays specify the interlocks text all PSS shutters in the Front End
+##                   VALVE-04 (SHTR-01)     VALVE-05 (SHTR-02)
+#set( $ilk00_list = ["Air press. OK"      , "Air press. OK"      ] )
+#set( $ilk01_list = ["Limits Healthy"     , "Limits Healthy"     ] )
+#set( $ilk02_list = ["Open Limit OK"      , "Open Limit OK"      ] )
+#set( $ilk03_list = ["Move time OK"       , "Move time OK"       ] )
+#set( $ilk04_list = ["PSS FE PShtr Pmt"   , "PSS BL OH1 Shtr GLA"] )
+#set( $ilk05_list = ["PSS BL G Pmt3 PShtr", "PSS BL OH1 Shtr GLB"] )
+#set( $ilk06_list = ["Gas Brem. ID Gap"   , "unused"             ] )
+#set( $ilk07_list = ["/Radmon Reset"      , "unused"             ] )
+#set( $ilk08_list = ["unused"             , "unused"             ] )
+#set( $ilk09_list = ["unused"             , "unused"             ] )
+#set( $ilk10_list = ["unused"             , "unused"             ] )
+#set( $ilk11_list = ["unused"             , "unused"             ] )
+#set( $ilk12_list = ["unused"             , "unused"             ] )
+#set( $ilk13_list = ["unused"             , "unused"             ] )
+#set( $ilk14_list = ["unused"             , "unused"             ] )
+#set( $ilk15_list = ["unused"             , "unused"             ] )
+#set( $gilk00_list = ["FE${front_end}-VA-GAUGE-01", "FE${front_end}-VA-GAUGE-01"] )
+#set( $gilk01_list = ["FE${front_end}-VA-GAUGE-02", "FE${front_end}-VA-GAUGE-02"] )
+#set( $gilk02_list = ["FE${front_end}-VA-GAUGE-03", "FE${front_end}-VA-GAUGE-03"] )
+#set( $gilk03_list = ["FE${front_end}-VA-GAUGE-04", "FE${front_end}-VA-GAUGE-04"] )
+#set( $gilk04_list = ["FE${front_end}-VA-GAUGE-05", "FE${front_end}-VA-GAUGE-05"] )
+#set( $gilk05_list = ["FE${front_end}-VA-GAUGE-06", "FE${front_end}-VA-GAUGE-06"] )
+#set( $gilk06_list = ["FE${front_end}-VA-FVI-01", "FE${front_end}-VA-FVI-01"] )
+#set( $gilk07_list = ["FE${front_end}-VA-FVI-02", "FE${front_end}-VA-FVI-02"] )
+#set( $gilk08_list = ["FE${front_end}-VA-FVI-03", "FE${front_end}-VA-FVI-03"] )
+#set( $gilk09_list = ["FE${front_end}-VA-FVI-04", "FE${front_end}-VA-FVI-04"] )
+#set( $gilk10_list = ["", ""] )
+#set( $gilk11_list = ["", ""] )
+#set( $gilk12_list = ["", ""] )
+#set( $gilk13_list = ["", ""] )
+#set( $gilk14_list = ["", ""] )
+#set( $gilk15_list = ["", ""] )
+#set( $valve_tclose_modify = true )
+#set( $valve_tclose_high_list = ["3.0","3.0"] )
+#set( $valve_tclose_hihi_list = ["5.0","5.0"] )
+#set( $valve_tclose_hsv_list  = ["MINOR","MINOR"] )
+#set( $valve_tclose_hhsv_list = ["MAJOR","MAJOR"] )
+#set( $SIMULATED = false )
+
+#parse("valve-sub.vm")
+
+#set( $valve_tclose_modify = false )
+
+## MPS Permit
+#set( $DEVICE_LIST = ["FE${front_end}-MP-PERMT-01"])
+#set( $PORT_LIST = ["vlvcc_fins_port"])
+#set( $VALVE_LIST = ["8"])
+
+## These arrays specify the interlocks text the MPS permit in the Front End
+##                     VALVE-08 (MP-PERMT-01)
+#set( $ilk00_list = ["ABSB-01 OK"        ] )
+#set( $ilk01_list = ["Operational Mode"  ] )
+#set( $ilk02_list = ["Beamline MPS OK"   ] )
+#set( $ilk03_list = ["FVCTRL IN-RUSH 01" ] )
+#set( $ilk04_list = ["FVCTRL IN-RUSH 02" ] )
+#set( $ilk05_list = ["V1 CLOSED UNEXP"   ] )
+#set( $ilk06_list = ["FFLAP CLSD UNEXP"  ] )
+#set( $ilk07_list = ["unused"  ] )
+#set( $ilk08_list = ["unused"  ] )
+#set( $ilk09_list = ["V2 Closed UNEXP" ] )
+#set( $ilk10_list = ["ABSB-01 cool. OK"  ] )
+#set( $ilk11_list = ["unused"  ] )
+#set( $ilk12_list = ["unused"            ] )
+#set( $ilk13_list = ["unused"            ] )
+#set( $ilk14_list = ["unused"            ] )
+#set( $ilk15_list = ["unused"            ] )
+
+#set( $SIMULATED = false )
+
+#parse("mpsPermit-sub.vm")
+
+################################################################################
+# ABSB-01 TCLOSE metrics in D1111 for RIO systems
+#
+# substitutions:
+# device          - device attached to VLVCC port
+# vlvcc_fins_port - asyn driver port to PLC
+# century         - TCLOSE is read from D1111, so century = 11 and index = 11
+# index           - offset into century block
+#
+# Simon Lay advised that for absorbers, HIGH => 1.5s, HIHI => 3.0s
+#
+file dlsPLC_vacValveTclose.template
+    {
+    pattern { device                    , vlvcc                      , port            , century , index, tclose_high, tclose_hihi, tclose_hsv, tclose_hhsv }
+            { FE${front_end}-RS-ABSB-01 , FE${front_end}-VA-VLVCC-01 , vlvcc_fins_port , 11      , 11   ,  1.5       ,  3.0       , "MINOR"   , "MAJOR"     }
+            { FE${front_end}-RS-ABSB-02 , FE${front_end}-VA-VLVCC-01 , vlvcc_fins_port , 11      , 13   ,  1.5       ,  3.0       , "MINOR"   , "MAJOR"     }
+    }
+
+######### PBPM ######################################
+##set ($device = "FE${front_end}-DI-PBPM-01")
+##set( $MOTOR_PORT = "BRICK1")
+##set( $MOTOR_X_CHAN = 1)
+##set( $MOTOR_Y_CHAN = 2)
+##set( $MOTORISED = true )
+##set( $SIMULATED = false )
+##set( $BLADE_CARD = "61" )
+##set( $BLADE_CHAN_LIST = [0,1,2,3] )
+##set( $TMON_CARD_LIST = [62,62] )
+##set( $TMON_CHAN_LIST = [0,1] )
+##set( $LOCUM4_SERCHAN = "ts1_7" )
+##set( $DUAL_BEAM = true )
+##set( $NEIGHBOURING_ID = "SR${front_end_b}")
+##set( $BEAMTYPE = "2" )
+##set( $GUI_SHORT_NAME = "XBPM1")
+##parse("pbpm-sub.vm")
+
+#### Secondary beam PBPM blades (shared body) ####
+##set ($device = "FE${front_end_b}-DI-PBPM-01")
+##set( $MOTORISED = false )
+##set( $SIMULATED = false )
+##set( $BLADE_CARD = "61" )
+##set( $BLADE_CHAN_LIST = [4,5,6,7] )
+##set( $TMON_CARD_LIST = [62,62] )
+##set( $TMON_CHAN_LIST = [2,3] )
+##set( $LOCUM4_SERCHAN = "ts1_8" )
+##set( $BEAMTYPE = "2" )
+##set( $NEIGHBOURING_ID = "SR${front_end}")
+##parse("pbpm-sub.vm")
+
+################################################################################
+# FVG status
+# The enabled/disabled status of FVG-01 & FVG-02 is seen at D6.6
+# The enabled/disabled status of FVG-03 & FVG-04 is seen at D6.7
+# substitutions:
+# device  - device name
+# vlvcc   - Valve Control Crate
+# block   - memory block ('00' - '60') [ MUST be two digit!! ]
+# word    - memory word within block (0 - 9)
+# bit     - bit number ('0' - 'F') of word
+# c       - Pressure ADC card ID     (new addition 31/10/08 IJG)
+# s       - Pressure ADC channel ID
+#
+file fvg_asyn.template
+{
+pattern { device                  ,  vlvcc , block, word, bit, c , s  }
+        { FE${front_end}-VA-FVG-01,  $VLVCC, "0"  , "6" , "6", 62, 4  }
+        { FE${front_end}-VA-FVG-02,  $VLVCC, "0"  , "6" , "6", 62, 5  }
+        { FE${front_end}-VA-FVG-03,  $VLVCC, "0"  , "6" , "7", 62, 6  }
+        { FE${front_end}-VA-FVG-04,  $VLVCC, "0"  , "6" , "7", 62, 7  }
+}
+
+file dig.template
+	{
+	pattern {    device  }
+			{ ${front_end}}
+	}
+
+
+
+################################################################################
+# One unassigned asynRecord for general front-end asyn debugging
+#
+# substitutions:
+# device - empty
+#
+file asynRec.template
+{
+pattern { device, PORT }
+        { FE${front_end}-CS-IOC-01:ASYN , "" }
+}
+
+file dlssrstatus.template 
+{ 
+pattern { device } 
+        { FE${front_end}-CS-IOC-01:SR } 
+}
+
+file dlssrfile.template 
+{ 
+pattern { device, file } 
+        { FE${front_end}-CS-IOC-01:SR, 0 } 
+        { FE${front_end}-CS-IOC-01:SR, 1 } 
+        { FE${front_end}-CS-IOC-01:SR, 2 } 
+}
+
+file FINS.template
+{
+pattern { device                    , port}
+        { FE${front_end}-VA-VLVCC-01, "vlvcc_fins_port" }
+}
+
+#
+# Establish PLC reads for temperature sensors from DM1XX and DM2XX
+#
+file dlsPLC_read100.template
+    {
+    pattern{ device               , port        , fins_timeout, century }
+        { $VLVCC                  , $VLVCC_PORT , "0"         , "0"     }
+        { $VLVCC                  , $VLVCC_PORT , "0"         , "1"     }
+        { $VLVCC                  , $VLVCC_PORT , "0"         , "2"     }
+        { $VLVCC                  , $VLVCC_PORT , "0"         , "3"     }
+        { $VLVCC                  , $VLVCC_PORT , "0"         , "4"     }
+        { $VLVCC                  , $VLVCC_PORT , "0"         , "5"     }
+        { $VLVCC                  , $VLVCC_PORT , "0"         , "6"     }
+        { $VLVCC                  , $VLVCC_PORT , "0"         , "11"    }
+    }
+
+file BLFEControl.template 
+{
+pattern { BEAMLINE, ABSB }
+	     { "10B"  , "02" }
+}
+
+file ioc.db
+    {
+    pattern { IOCNAME }
+            { FE${front_end}-CS-IOC-01 }
+    }
+
+
+################################################################################
+## Event Receiver
+##
+##file defaultEVR.template
+##{
+##pattern { device          , card }
+##        { FE${front_end}-CS-EVR-01 , 1    }
+##}
+##file evr_alive.template
+##{
+##pattern { SYSTEM          , EVENT }
+##        { FE${front_end}-CS-EVR-01 , 37    }
+##}
+
+##file generalTime.template
+##{
+##pattern { device }
+##        { FE${front_end}-CS-IOC-01 }
+##
+##}
+
+# Radiation Monitor Reset handling
+file radmonreset_asyn.template
+{
+    pattern {device                    , port             , radmon_device                     }
+            {FE${front_end}-RS-RDMON-01, "vlvcc_fins_port", BL10B-RS-RDMON-01:RESET:OK}
+        
+}
+
+
+file dlsPLC_CommsStatus.template
+    {
+    pattern { device }
+            { FE${front_end}-VA-VLVCC-01 }
+    }

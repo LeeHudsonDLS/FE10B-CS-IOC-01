@@ -1,0 +1,13 @@
+This is our top level template
+
+Define a macro to pad numbers to two digits
+
+#macro (pad $index)
+#if ($index.toString().length() == 1)0$index#else$index#end
+#end
+
+Parse our Aperture template - this is like using dbLoadTemplate
+
+#set ($FRONT_END = "10B")
+
+$generator.parse("fe.vm", "FE${FRONT_END}-CS-IOC-01-VM.substitutions")

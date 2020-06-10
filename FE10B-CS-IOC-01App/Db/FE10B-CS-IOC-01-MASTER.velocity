@@ -1,0 +1,10 @@
+# EtherCAT Master
+
+file $(ETHERCAT)/db/MASTER.template
+{   
+pattern {       DEVICE            , PORT    , SCAN     }
+        { FE10B-CS-ECAT-01:MASTER , MASTER0 , "I/O Intr" } 
+}
+
+
+

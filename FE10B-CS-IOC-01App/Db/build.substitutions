@@ -1,0 +1,9 @@
+file $(FE)/db/pbpm_rio.template
+{
+pattern { device, rio_pt100}
+        { FE10B-DI-PBPM-01:TMON01:C, FE10B-CS-ADC-01:CHANNEL1:VALUE}
+        { FE10B-DI-PBPM-02:TMON01:C, FE10B-CS-ADC-01:CHANNEL2:VALUE}
+}
+
+
+

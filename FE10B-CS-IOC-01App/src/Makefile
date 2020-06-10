@@ -2,25 +2,8 @@ TOP=../..
 
 include $(TOP)/configure/CONFIG
 
-# -------------------------------
-# Build an Diamond Support Module
-# -------------------------------
-
-#LIBRARY_IOC += xxx
-
-# xxxRecord.h will be created from xxxRecord.dbd
-#DBDINC += xxx.h
-
-# xxxRecord.dbd will be installed into <top>/dbd
-#DBD += xxx.dbd
-
-# The following are compiled and added to the support library
-#xxx_SRCS += xxxCodeA.c
-#xxx_SRCS += xxxCodeB.c
-
-# We need to link against the EPICS Base libraries
-#xxx_LIBS += $(EPICS_BASE_IOC_LIBS)
-
+USR_CXXFLAGS_DEFAULT += -fno-operator-names
+USR_CXXFLAGS_DEFAULT += -pedantic
 
 # ------------------------
 # Build an IOC Application
@@ -31,9 +14,23 @@ PROD_IOC = FE10B-CS-IOC-01
 # FE10B-CS-IOC-01.dbd will be installed into <top>/dbd
 DBD += FE10B-CS-IOC-01.dbd
 
+
+
 # FE10B-CS-IOC-01.dbd will be created from these files
 FE10B-CS-IOC-01_DBD += base.dbd
-#FE10B-CS-IOC-01_DBD += xxx.dbd
+FE10B-CS-IOC-01_DBD += calcSupport.dbd
+FE10B-CS-IOC-01_DBD += genSubRecord.dbd
+FE10B-CS-IOC-01_DBD += drvAsynIPPort.dbd
+FE10B-CS-IOC-01_DBD += devIocStats.dbd
+FE10B-CS-IOC-01_DBD += ecAsyn.dbd
+FE10B-CS-IOC-01_DBD += drvAsynSerialPort.dbd
+FE10B-CS-IOC-01_DBD += stream.dbd
+FE10B-CS-IOC-01_DBD += FINS.dbd
+FE10B-CS-IOC-01_DBD += asynRecord.dbd
+FE10B-CS-IOC-01_DBD += as.dbd
+FE10B-CS-IOC-01_DBD += busySupport.dbd
+FE10B-CS-IOC-01_DBD += FERegistrar.dbd
+FE10B-CS-IOC-01_DBD += blcon_state_machine.dbd
 
 # FE10B-CS-IOC-01_registerRecordDeviceDriver.cpp will be created
 # FE10B-CS-IOC-01.dbd
@@ -51,37 +48,31 @@ FE10B-CS-IOC-01_OBJS_vxWorks += $(EPICS_BASE_BIN)/vxComLibrary
 
 # This line says that this IOC Application depends on the
 # xxx Support Module
-#FE10B-CS-IOC-01_LIBS += xxx
+FE10B-CS-IOC-01_LIBS += ecAsyn
+FE10B-CS-IOC-01_LIBS += devIocStats
+FE10B-CS-IOC-01_LIBS += FINS
+FE10B-CS-IOC-01_LIBS += calc
+FE10B-CS-IOC-01_LIBS += genSub
+FE10B-CS-IOC-01_LIBS += sscan
+FE10B-CS-IOC-01_LIBS += asyn
+FE10B-CS-IOC-01_LIBS += FELib
+FE10B-CS-IOC-01_LIBS += pv
+FE10B-CS-IOC-01_LIBS += seq
+FE10B-CS-IOC-01_LIBS += stream
+FE10B-CS-IOC-01_LIBS += autosave
+FE10B-CS-IOC-01_LIBS += busy
+FE10B-CS-IOC-01_LIBS += pcre
+
+ifneq ($(SNCSEQ),)
+    # This builds sncExample as a component of SR12I-CS-IOC-01
+    FE10B-CS-IOC-01_SNCFLAGS += +r
+    FE10B-CS-IOC-01_SRCS += blcon_state_machine.st
+    FE10B-CS-IOC-01_LIBS += seq pv
+endif
 
 # We need to link this IOC Application against the EPICS Base libraries
 FE10B-CS-IOC-01_LIBS += $(EPICS_BASE_IOC_LIBS)
 
 # ---------------------------------------------------
-
-# NOTE: To build SNL programs, SNCSEQ must be defined
-# in the <top>/configure/RELEASE file
-#
-# The difference between a file with an "st" extension
-# and one with an "stt" extension is:
-# The "st" extension files get passed through the C preprocessor
-# whereas the "stt" files do not.
-
-#ifneq ($(SNCSEQ),)
-    # This builds sncExample as a component of FE10B-CS-IOC-01
-#    FE10B-CS-IOC-01_SNCFLAGS += +r
-#    FE10B-CS-IOC-01_DBD      += sncExample.dbd
-#    FE10B-CS-IOC-01_SRCS     += sncExample.stt
-#    FE10B-CS-IOC-01_LIBS     += seq pv
-
-    # The following builds sncExample as a standalone application
-#    PROD_HOST           += sncExample
-#    sncExample_SNCFLAGS += +m
-#    sncExample_SRCS     += sncExample.stt
-#    sncExample_LIBS     += seq pv
-    # Here, we need to specify the dependency on EPICS Base libraries
-    # again because this is a standalone application and
-    # not part of FE10B-CS-IOC-01
-#    sncExample_LIBS     += $(EPICS_BASE_HOST_LIBS)
-#endif
 
 include $(TOP)/configure/RULES

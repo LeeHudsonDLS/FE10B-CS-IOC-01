@@ -1,0 +1,42 @@
+# Start the service scanner
+start() {
+		INIT_ROOT="$(dirname "$(readlink -fn "$0")")"
+
+        initlog -c "echo -n Starting EtherCAT scanner: "
+        $INIT_ROOT/scanner.sh &
+        ### Create the lock file ###
+        touch /var/lock/subsys/scanner
+        success $"EtherCAT scanner startup"
+        echo
+}
+
+# Restart the service FOO
+stop() {
+        initlog -c "echo -n Stopping EtherCAT scanner: "
+        killproc scanner
+        ### Now, delete the lock file ###
+        rm -f /var/lock/subsys/scanner
+        echo
+}
+
+### main logic ###
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  status)
+        status scanner
+        ;;
+  restart|reload|condrestart)
+        stop
+        start
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|restart|reload|status}"
+        exit 1
+esac
+
+exit 0

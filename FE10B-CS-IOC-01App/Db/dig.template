@@ -1,0 +1,119 @@
+#
+# Standard digital input schema for Insertion Device Front Ends
+#
+# $Author: ig43 $
+# $Date: 2010-02-25 08:34:09 +0000 (Thu, 25 Feb 2010) $
+# $Id: dig.template 41755 2010-02-25 08:34:09Z ig43 $
+# $Name: post_review_2 $
+# $Revision: 41755 $
+# % macro,device, Front-end identifier 
+#% archiver 3600 Monitor
+record(bi,"FE$(device)-CS-FANC-01:FANALM")
+	{
+	field(DESC,"Rack fan alarm")
+	field(SCAN,"1 second")
+	field(DTYP,"Soft Channel")
+	field(INP,"FE10B-CS-IOC-01:M1:CHANNEL1:INPUT")
+	field(ZNAM,"Off")
+	field(ONAM,"On")
+	field(ZSV,"MAJOR")
+	}
+
+#% archiver 3600 Monitor
+record(bi,"FE$(device)-CS-PSU-01:STATUS")
+    {
+    field(DESC,"PULS PSU Status")
+    field(SCAN,"1 second")
+    field(DTYP,"Soft Channel")
+    field(INP,"FE$(device)-CS-IOC-01:M1:CHANNEL4:INPUT")
+    field(ZNAM,"Fail")
+    field(ONAM,"Healthy")
+    field(ZSV,"MAJOR")
+    }
+
+#% archiver 3600 Monitor
+record(bi,"FE$(device)-AL-APTR-02:H2OALM01")
+	{
+	field(DESC,"Water flow alarm")
+	field(SCAN,".1 second")
+	field(DTYP,"Soft Channel")
+	field(INP,"FE10B-CS-IOC-01:M2:CHANNEL1:INPUT")
+	field(ZNAM,"Off")
+	field(ONAM,"On")
+	field(ZSV,"MAJOR")
+	}
+
+#% archiver 3600 Monitor
+record(bi,"FE$(device)-RS-ABSB-01:H2OALM01")
+	{
+	field(DESC,"Water flow alarm")
+	field(SCAN,".1 second")
+	field(DTYP,"Soft Channel")
+	field(INP,"FE10B-CS-IOC-01:M1:CHANNEL3:INPUT")
+	field(ZNAM,"Off")
+	field(ONAM,"On")
+	field(ZSV,"MAJOR")
+	}
+
+#% archiver 3600 Monitor
+record(bi,"FE$(device)-RS-ABSB-02:H2OALM01")
+	{
+	field(DESC,"Water flow alarm")
+	field(SCAN,".1 second")
+	field(DTYP,"Soft Channel")
+	field(INP,"FE10B-CS-IOC-01:M2:CHANNEL3:INPUT")
+	field(ZNAM,"Off")
+	field(ONAM,"On")
+	field(ZSV,"MAJOR")
+	}
+
+#% archiver 3600 Monitor
+record(bi,"FE$(device)-DI-PBPM-01:H2OALM01")
+	{
+	field(DESC,"Water flow alarm")
+	field(SCAN,".1 second")
+	field(DTYP,"Soft Channel")
+	field(INP,"FE10B-CS-IOC-01:M1:CHANNEL2:INPUT")
+	field(ZNAM,"Off")
+	field(ONAM,"On")
+	field(ZSV,"MAJOR")
+	}
+
+
+#% archiver 3600 Monitor
+record(bi,"FE$(device)-DI-PBPM-02:H2OALM01")
+	{
+	field(DESC,"Water flow alarm")
+	field(SCAN,".1 second")
+	field(DTYP,"Soft Channel")
+	field(INP,"FE10B-CS-IOC-01:M2:CHANNEL2:INPUT")
+	field(ZNAM,"Off")
+	field(ONAM,"On")
+	field(ZSV,"MAJOR")
+	}
+
+
+#% archiver 3600 Monitor
+record(bi,"FE$(device)-DI-PBPM-01:TMPALM01")
+	{
+	field(DESC,"Temperature alarm")
+	field(SCAN,".1 second")
+	field(DTYP,"Soft Channel")
+	field(INP,"FE10B-CS-IOC-01:M3:CHANNEL1:INPUT")
+	field(ZNAM,"Off")
+	field(ONAM,"On")
+	field(ZSV,"MAJOR")
+	field(FLNK,"FE$(device)-DI-PBPM-02:TMPALM01")
+	}
+
+#% archiver 3600 Monitor
+record(bi,"FE$(device)-DI-PBPM-02:TMPALM01")
+	{
+	field(DESC,"Temperature alarm")
+	field(DTYP,"Soft Channel")
+	field(INP,"FE10B-CS-IOC-01:M3:CHANNEL2:INPUT")
+	field(ZNAM,"Off")
+	field(ONAM,"On")
+	field(ZSV,"MAJOR")
+	}
+

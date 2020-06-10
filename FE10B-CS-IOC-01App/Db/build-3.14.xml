@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<project name="Templates" default="main" basedir=".">
+
+  <available property="diamond.lib" value="/dls_sw/prod/tools/java/lib" file="/dls_sw/prod/tools/java/lib/"/>
+
+  <path id="texen.classpath">
+    <fileset dir="${diamond.lib}/velocity-1.4/build/lib">
+      <include name="*.jar"/>
+    </fileset>
+    <fileset dir="${diamond.lib}/velocity-1.4/bin">
+      <include name="*.jar"/>
+    </fileset>
+    <fileset dir="${diamond.lib}/dom4j-1.4">
+      <include name="*.jar"/>
+      <include name="lib/*.jar"/>
+    </fileset>
+  </path>
+
+  <taskdef name="texen" classname="org.apache.velocity.texen.ant.TexenTask">
+    <classpath refid="texen.classpath"/>
+  </taskdef>
+
+  <property name="Controller" value="1" />
+  <property name="GaugeTypeIMG" value="2" />
+  <property name="GaugeTypePIRG" value="3" />
+
+  <echo message="Controller = ${Controller}" />
+
+	  <target name="main">
+
+			<echo message="=======================================" />
+			<echo message=" -- BUILDING EPICS SUBSTITUTION FILE..." />
+			<echo message="=======================================" />
+			<echo message="" />
+
+			<texen
+	      controlTemplate="control.vm"
+	      outputDirectory="."
+          templatePath=".,${FE}/FEApp/Db/,/dls_sw/prod/R3.14.8.2/support/PT100/1-0/PT100App/Db"
+	      outputFile="report.txt"
+	      />
+
+	  </target>
+
+      <!-- templatePath=".,/dls_sw/work/R3.14.8.2/support/FE/FEApp/Db/,/dls_sw/work/R3.14.8.2/support/PT100/PT100App/Db" -->
+
+
+</project>

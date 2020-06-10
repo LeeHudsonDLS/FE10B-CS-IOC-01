@@ -1,0 +1,18 @@
+# Analogue inputs
+
+#
+# EL3162:
+# 2 channel, 0..10V, 16 bits
+#
+
+file $(ETHERCAT)/db/EL3162.template
+{   
+pattern {       DEVICE    , PORT, SCAN     }
+        { FE10B-CS-ADC-01 , AI0 , "I/O Intr" } 
+        { FE10B-CS-ADC-02 , AI1 , "I/O Intr" } 
+        { FE10B-CS-ADC-03 , AI2 , "I/O Intr" } 
+        { FE10B-CS-ADC-04 , AI3 , "I/O Intr" } 
+}
+
+
+

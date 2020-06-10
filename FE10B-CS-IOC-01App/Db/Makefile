@@ -1,5 +1,6 @@
 TOP=../..
 include $(TOP)/configure/CONFIG
+.PHONY : build clean
 #----------------------------------------
 #  ADD MACRO DEFINITIONS AFTER THIS LINE
 
@@ -7,23 +8,59 @@ include $(TOP)/configure/CONFIG
 #  Optimization of db files using dbst (DEFAULT: NO)
 #DB_OPT = YES
 
-#----------------------------------------------------
-# In a Diamond Support Module, install
-# templates like this
-#
-#DB += motor.template
-#DB += basic_motor.template
+DB += FE10B-CS-IOC-01.db
 
-#----------------------------------------------------
-# In a Diamond IOC Application, build db files from
-# template files like this
-#
-#DB += BL06I-MO-IOC-01.db
-#DB += BL06I-MO-IOC-01_sim.db
-
-#USES_TEMPLATE += $(MOTOR)/db/motor.template
-#USES_TEMPLATE += $(MOTOR)/db/basic_motor.template
 
 include $(TOP)/configure/RULES
 #----------------------------------------
 #  ADD RULES AFTER THIS LINE
+
+FE10B: ../O.Common/FE10B-CS-IOC-01.db
+	/dls_sw/prod/tools/RHEL5/bin/epicsparser.py ../O.Common/FE10B-CS-IOC-01.db -r FE10B -s as > FE10B
+	@echo "Installing postprocessor files:... INSTALL_PRODUCT=$(INSTALL_PRODUCT) - INSTALL_DATA=$(INSTALL_DATA)"
+	-@$(INSTALL_PRODUCT) -d -m 555 *.req $(INSTALL_DATA)
+
+#FE10B-CS-IOC-01-VM.substitutions: ../build-3.14.xml ../control.vm ../fe.vm
+#	ant -DFE=$(FE) -f ../build-3.14.xml
+#	mv ../$@ .
+
+buildInstall: FE10B
+
+build : ../FE10B-CS-IOC-01-MASTER.substitutions\
+	../FE10B-CS-IOC-01-AI.substitutions\
+	../FE10B-CS-IOC-01-DI.substitutions\
+	../FE10B-CS-IOC-01-PT100.substitutions\
+	../FE10B-CS-IOC-01.substitutions\
+	../FE10B-CS-IOC-01-VM.substitutions\
+	../build.substitutions\
+	Makefile
+
+../FE10B-CS-IOC-01-MASTER.substitutions : ../FE10B-CS-IOC-01-MASTER.velocity
+	cd ..; velocity FE10B-CS-IOC-01-MASTER.velocity > FE10B-CS-IOC-01-MASTER.substitutions
+../FE10B-CS-IOC-01-AI.substitutions : ../FE10B-CS-IOC-01-AI.velocity
+	cd ..; velocity FE10B-CS-IOC-01-AI.velocity > FE10B-CS-IOC-01-AI.substitutions
+../FE10B-CS-IOC-01-DI.substitutions : ../FE10B-CS-IOC-01-DI.velocity
+	cd ..; velocity FE10B-CS-IOC-01-DI.velocity > FE10B-CS-IOC-01-DI.substitutions
+../FE10B-CS-IOC-01-VM.substitutions : ../fe.vm
+	cd ..; ant -DFE=$(FE) -f build-3.14.xml
+../FE10B-CS-IOC-01-PT100.substitutions : ../FE10B-CS-IOC-01-PT100.velocity
+	cd ..; velocity FE10B-CS-IOC-01-PT100.velocity > FE10B-CS-IOC-01-PT100.substitutions
+
+../FE10B-CS-IOC-01.substitutions: ../FE10B-CS-IOC-01-MASTER.substitutions ../FE10B-CS-IOC-01-AI.substitutions ../FE10B-CS-IOC-01-PT100.substitutions ../build.substitutions ../FE10B-CS-IOC-01-DI.substitutions  ../FE10B-CS-IOC-01-VM.substitutions 
+	cd ..; cat FE10B-CS-IOC-01-MASTER.substitutions \
+	FE10B-CS-IOC-01-AI.substitutions \
+	FE10B-CS-IOC-01-DI.substitutions \
+	FE10B-CS-IOC-01-PT100.substitutions \
+	FE10B-CS-IOC-01-VM.substitutions \
+	build.substitutions \
+	> FE10B-CS-IOC-01.substitutions
+	cd ..; rm -f FE10B-CS-IOC-01-MASTER.substitutions FE10B-CS-IOC-01-AI.substitutions FE10B-CS-IOC-01-PT100.substitutions FE10B-CS-IOC-01-DI.substitutions
+
+clean::
+	rm -f FE10B-CS-IOC-01-MASTER.substitutions
+	rm -f FE10B-CS-IOC-01-AI.substitutions
+	rm -f FE10B-CS-IOC-01-DI.substitutions
+	rm -f FE10B-CS-IOC-01-PT100.substitutions
+	rm -f FE10B-CS-IOC-01-VM.substitutions
+	rm -f FE10B-CS-IOC-01.substitutions
+
