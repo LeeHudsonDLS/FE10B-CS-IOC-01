@@ -10,4 +10,5 @@ FE10B-CS-IOC-01App/Db/FE10B-CS-IOC-01-VM.substitutions
 FE10B-CS-IOC-01App/Db/FE10B-CS-IOC-01.substitutions
 etc/FE10B.xml
 etc/scanner.sh
-
+FE10B-CS-IOC-01App/Db/velocity.log
+bin/
