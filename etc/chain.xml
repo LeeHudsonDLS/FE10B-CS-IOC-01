@@ -1,19 +1,31 @@
-<chain>
-<device type_name="EK1100" revision="0x00110000" position="0" name="COUPLER0" />
-<device type_name="EL1014" revision="0x00100000" position="1" name="DIGIN0" />
-<device type_name="EL1014" revision="0x00100000" position="2" name="DIGIN1" />
-<device type_name="EL1014" revision="0x00100000" position="3" name="DIGIN2" />
-<device type_name="EL3162" revision="0x00110000" position="4" name="AI0" />
-<device type_name="EL3162" revision="0x00110000" position="5" name="AI1" />
-<device type_name="EL3162" revision="0x00110000" position="6" name="AI2" />
-<device type_name="EL3162" revision="0x00110000" position="7" name="AI3" />
-<device type_name="EL9410" revision="0x00100000" position="8" name="EBUSPSU1" />
-<device type_name="EL3201" revision="0x00100000" position="9" name="PT0" />
-<device type_name="EL3201" revision="0x00100000" position="10" name="PT1" />
-<device type_name="EL3201" revision="0x00100000" position="11" name="PT2" />
-<device type_name="EL3201" revision="0x00100000" position="12" name="PT3" />
-<device type_name="EL3201" revision="0x00100000" position="13" name="PT4" />
-<device type_name="EL3201" revision="0x00100000" position="14" name="PT5" />
-<device type_name="EL3201" revision="0x00100000" position="15" name="PT6" />
-<device type_name="EL3201" revision="0x00100000" position="16" name="PT7" />
-</chain>
+<components arch="linux-x86_64">
+  <ethercat.EthercatMaster name="ECATM" socket="/tmp/socket"/>
+  <ethercat.EthercatSlave master="ECATM" name="COUPLER0" position="0" type_rev="EK1100 rev 0x00110000"/>
+  <ethercat.EthercatSlave master="ECATM" name="AI1" position="1" type_rev="EL3702 rev 0x00020000" oversample="10" />
+  <ethercat.EthercatSlave master="ECATM" name="AI2" position="2" type_rev="EL3702 rev 0x00020000" oversample="10" />
+  <ethercat.EthercatSlave master="ECATM" name="AI3" position="3" type_rev="EL3702 rev 0x00020000" oversample="10" />
+    <ethercat.GenericADC channel="1" name="G1" pdoentry="Ch1Sample.Ch1Value : EL3702 rev 0x00020000" slave="AI1" cycle="Ch1CycleCount.Ch1CycleCount"/>
+    <ethercat.GenericADCTemplate CHANNEL="1" DEVICE="FE10B-CS-ADC-02" INTSCAN="I/O Intr" PORT="AI1" SAMPLES="100" SCAN="I/O Intr" name="GT1"/>
+    <records.ai DESC="ai-ch1-erio2" DTYP="asynInt32" EGU="V" EGUF="10" EGUL="-10" HOPR="10" INP="@asyn(AI1_ADC1)VALUE" LINR="LINEAR" LOPR="0" SCAN="I/O Intr" name="AIG1" record="AIG1:CH1"/>
+
+    <ethercat.GenericADC channel="2" name="G2" pdoentry="Ch2Sample.Ch2Value : EL3702 rev 0x00020000" slave="AI1" cycle="Ch2CycleCount.Ch2CycleCount"/>
+    <ethercat.GenericADCTemplate CHANNEL="2" DEVICE="FE10B-CS-ADC-02" INTSCAN="I/O Intr" PORT="AI1" SAMPLES="100" SCAN="I/O Intr" name="GT2"/>
+    <records.ai DESC="ai-ch1-erio2" DTYP="asynInt32" EGU="V" EGUF="10" EGUL="-10" HOPR="10" INP="@asyn(AI1_ADC2)VALUE" LINR="LINEAR" LOPR="0" SCAN="I/O Intr" name="AIG1" record="AIG1:CH2"/>
+
+    <ethercat.GenericADC channel="1" name="G3" pdoentry="Ch1Sample.Ch1Value : EL3702 rev 0x00020000" slave="AI2" cycle="Ch1CycleCount.Ch1CycleCount"/>
+    <ethercat.GenericADCTemplate CHANNEL="1" DEVICE="FE10B-CS-ADC-03" INTSCAN="I/O Intr" PORT="AI2" SAMPLES="100" SCAN="I/O Intr" name="GT3"/>
+    <records.ai DESC="ai-ch1-erio2" DTYP="asynInt32" EGU="V" EGUF="10" EGUL="-10" HOPR="10" INP="@asyn(AI2_ADC1)VALUE" LINR="LINEAR" LOPR="0" SCAN="I/O Intr" name="AIG2" record="AIG2:CH1"/>
+
+    <ethercat.GenericADC channel="2" name="G4" pdoentry="Ch2Sample.Ch2Value : EL3702 rev 0x00020000" slave="AI2" cycle="Ch2CycleCount.Ch2CycleCount"/>
+    <ethercat.GenericADCTemplate CHANNEL="2" DEVICE="FE10B-CS-ADC-03" INTSCAN="I/O Intr" PORT="AI2" SAMPLES="100" SCAN="I/O Intr" name="GT4"/>
+    <records.ai DESC="ai-ch1-erio2" DTYP="asynInt32" EGU="V" EGUF="10" EGUL="-10" HOPR="10" INP="@asyn(AI2_ADC2)VALUE" LINR="LINEAR" LOPR="0" SCAN="I/O Intr" name="AIG2" record="AIG2:CH2"/>
+
+    <ethercat.GenericADC channel="1" name="G5" pdoentry="Ch1Sample.Ch1Value : EL3702 rev 0x00020000" slave="AI3" cycle="Ch1CycleCount.Ch1CycleCount"/>
+    <ethercat.GenericADCTemplate CHANNEL="1" DEVICE="FE10B-CS-ADC-03" INTSCAN="I/O Intr" PORT="AI2" SAMPLES="100" SCAN="I/O Intr" name="GT5"/>
+    <records.ai DESC="ai-ch1-erio2" DTYP="asynInt32" EGU="V" EGUF="10" EGUL="-10" HOPR="10" INP="@asyn(AI3_ADC1)VALUE" LINR="LINEAR" LOPR="0" SCAN="I/O Intr" name="AIG3" record="AIG3:CH1"/>
+
+    <ethercat.GenericADC channel="2" name="G6" pdoentry="Ch2Sample.Ch2Value : EL3702 rev 0x00020000" slave="AI3" cycle="Ch2CycleCount.Ch2CycleCount"/>
+    <ethercat.GenericADCTemplate CHANNEL="2" DEVICE="FE10B-CS-ADC-03" INTSCAN="I/O Intr" PORT="AI2" SAMPLES="100" SCAN="I/O Intr" name="GT6"/>
+    <records.ai DESC="ai-ch1-erio2" DTYP="asynInt32" EGU="V" EGUF="10" EGUL="-10" HOPR="10" INP="@asyn(AI3_ADC2)VALUE" LINR="LINEAR" LOPR="0" SCAN="I/O Intr" name="AIG3" record="AIG3:CH2"/>
+</components>
+

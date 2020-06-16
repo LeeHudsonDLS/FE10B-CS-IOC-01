@@ -1,17 +1,21 @@
 # Analogue inputs
 
-#
-# EL3162:
-# 2 channel, 0..10V, 16 bits
-#
-
-file $(ETHERCAT)/db/EL3162.template
-{   
-pattern {       DEVICE    , PORT, SCAN     }
-        { FE10B-CS-ADC-01 , AI0 , "I/O Intr" } 
-        { FE10B-CS-ADC-02 , AI1 , "I/O Intr" } 
-        { FE10B-CS-ADC-03 , AI2 , "I/O Intr" } 
-        { FE10B-CS-ADC-04 , AI3 , "I/O Intr" } 
+# Macros:
+#  DEVICE   EtherCAT slave
+#  CHANNEL  ADC channel
+#  PORT     asyn port for EtherCAT slave
+#  SAMPLES  number of samples in waveform
+#  SCAN     polling period
+#  INTSCAN  polling period for the INTERRUPT parameter
+file $(ETHERCAT)/db/gadc.template
+{
+pattern { DEVICE           , CHANNEL, PORT    , SAMPLES, SCAN      , INTSCAN   , name  }
+        { "FE10B-CS-ADC-02", "1"    , "AI1"   , "100"  , "I/O Intr", "I/O Intr", "GT1" }
+        { "FE10B-CS-ADC-02", "2"    , "AI1"   , "100"  , "I/O Intr", "I/O Intr", "GT2" }
+        { "FE10B-CS-ADC-03", "1"    , "AI2"   , "100"  , "I/O Intr", "I/O Intr", "GT3" }
+        { "FE10B-CS-ADC-03", "2"    , "AI2"   , "100"  , "I/O Intr", "I/O Intr", "GT4" }
+        { "FE10B-CS-ADC-04", "1"    , "AI3"   , "100"  , "I/O Intr", "I/O Intr", "GT5" }
+        { "FE10B-CS-ADC-04", "2"    , "AI3"   , "100"  , "I/O Intr", "I/O Intr", "GT6" }
 }
 
 
