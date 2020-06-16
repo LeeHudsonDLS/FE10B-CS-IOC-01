@@ -18,6 +18,7 @@
 #set( $VLVCC_ASYN = true)
 
 ## Vacuum Spaces
+## FE/vacuumSpace-b-sub.vm
 #set ($FE_AREA = $front_end)
 #parse("vacuumSpace-b-sub.vm")
 
@@ -26,6 +27,7 @@
 #set( $GCTLR_LIST = ["FE${front_end}-VA-GCTLR-01", "FE${front_end}-VA-GCTLR-02", "FE${front_end}-VA-GCTLR-03"])
 #set( $PORT_LIST = ["ts1_1", "ts1_2" ,"ts1_5"])
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 ## IMGs
@@ -37,6 +39,7 @@
 #set ($CTLCHAN_LIST =["0"                                           ,"1"                                           ,"0"                                           ,"1"                                           ,"0"                                           ,"1"                                           ] )
 ##  C1 => 0, C2 => 1
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 ## PIRGs
@@ -45,17 +48,21 @@
 #set ($PORT_LIST =["ts1_1"                     ,"ts1_1"                     ,"ts1_2"                     ,"ts1_2"                     ,"ts1_5"                     ,"ts1_5"                     ] )
 #set ($CHAN_LIST =["5"                         ,"6"                         ,"5"                         ,"6"                         ,"5"                         ,"6"                         ] )
 #set ($SIMULATED =false                                                                                                                                                                           )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 ## Combination gauges
+## This creates the GAUGE-XX PVs
 #set( $GTYPE = "COMBINATION")
 #set( $DOMAIN = "FE${front_end}" )
 #set( $ID_LIST =   ["01"                            , "02"                            , "03"                            , "04"                            , "05"                            , "06"                            ])
-#set( $ADC_LIST =  ["FE10B-CS-ADC-01:CHANNEL1:VALUE", "FE10B-CS-ADC-01:CHANNEL2:VALUE", "FE10B-CS-ADC-02:CHANNEL1:VALUE", "FE10B-CS-ADC-02:CHANNEL2:VALUE", "FE10B-CS-ADC-03:CHANNEL1:VALUE", "FE10B-CS-ADC-03:CHANNEL2:VALUE"])
+#set( $ADC_LIST =  ["FE10B-CS-ADC-02:ADC1_VALUE", "FE10B-CS-ADC-02:ADC2_VALUE", "FE10B-CS-ADC-03:ADC1_VALUE", "FE10B-CS-ADC-03:ADC2_VALUE", "FE10B-CS-ADC-04:ADC1_VALUE", "FE10B-CS-ADC-04:ADC2_VALUE"])
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 ## Relays
+## Values taken from TDI-VAC-VEQ-VEM-010-Vacuum Manual page 22
 #set( $GTYPE = "RELAY")
 #set ( $RELAY_LIST     = [ "FE${front_end}-VA-IMG-01:RLY1"                 , "FE${front_end}-VA-IMG-01:RLY2"               , "FE${front_end}-VA-IMG-01:RLY3"               , "FE${front_end}-VA-IMG-01:RLY4"            ] )
 #set ( $PORT_LIST      = [ "ts1_1"                                         , "ts1_1"                                       , "ts1_1"                                       , "ts1_1"                                    ] )
@@ -73,6 +80,7 @@
 #set ( $RELAY_LOW      = [ "9.0e-7"                                        , "9.0e-7"                                      , "9.0e-7"                                      , "9.0e-7"                                   ] )
 #set ( $NOWRITE_LIST   = [ "FE${front_end}-VA-GAUGE-01:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-01:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-01:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-01:ILKSETSP:NOWRITE"] )
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 #set( $GTYPE = "RELAY")
@@ -81,6 +89,7 @@
 #set ($RELAY_NUM_LIST = [ "5"                                           , "6"                                           , "7"                                           , "8"                                           ] )
 #set ($NOWRITE_LIST   = [ "FE${front_end}-VA-GAUGE-02:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-02:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-02:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-02:ILKSETSP:NOWRITE" ] )
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 #set( $GTYPE          =  "RELAY")
@@ -89,6 +98,7 @@
 #set ($RELAY_NUM_LIST =  [ "1"                                           , "2"                                           , "3"                                           , "4"                                           ] )
 #set ($NOWRITE_LIST   =  [ "FE${front_end}-VA-GAUGE-03:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-03:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-03:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-03:ILKSETSP:NOWRITE" ] )
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 #set( $GTYPE = "RELAY")
@@ -97,6 +107,7 @@
 #set( $RELAY_NUM_LIST   = [ "5"                                           , "6"                                           ,  "7"                                           ,  "8"                                           ] )
 #set( $NOWRITE_LIST     = [ "FE${front_end}-VA-GAUGE-04:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-04:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-04:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-04:ILKSETSP:NOWRITE" ] )
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 #set( $GTYPE = "RELAY")
@@ -105,6 +116,7 @@
 #set( $RELAY_NUM_LIST   = [ "1"                                           , "2"                                           ,  "3"                                           ,  "4"                                           ] )
 #set( $NOWRITE_LIST     = [ "FE${front_end}-VA-GAUGE-05:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-05:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-05:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-05:ILKSETSP:NOWRITE" ] )
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 #set( $GTYPE = "RELAY")
@@ -113,6 +125,7 @@
 #set( $RELAY_NUM_LIST   = [ "5"                                           , "6"                                           ,  "7"                                           ,  "8"                                           ] )
 #set( $NOWRITE_LIST     = [ "FE${front_end}-VA-GAUGE-06:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-06:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-06:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-06:ILKSETSP:NOWRITE" ] )
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 #set( $GTYPE = "RELAY")
@@ -131,6 +144,7 @@
 #set( $RELAY_HIGH     =  [ "1.1e-2"                         , "950"                            ] )
 #set( $RELAY_LOW      =  [ "2.0e-3"                         , "9.0e-7"                         ] )
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 #set( $GTYPE = "RELAY")
@@ -138,6 +152,7 @@
 #set( $PORT_LIST      = [ "ts1_1"                          , "ts1_1"                          ] )
 #set( $RELAY_NUM_LIST = [ "11"                             , "12"                             ] )
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 #set( $GTYPE = "RELAY")
@@ -145,6 +160,7 @@
 #set( $PORT_LIST      = [ "ts1_2"                          , "ts1_2"                          ] )
 #set( $RELAY_NUM_LIST = [ "9"                              , "10"                             ] )
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 #set( $GTYPE = "RELAY")
@@ -152,6 +168,7 @@
 #set( $PORT_LIST      = [ "ts1_2"                          , "ts1_2"                          ] )
 #set( $RELAY_NUM_LIST = [ "11"                             , "12"                             ] )
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 #set( $GTYPE = "RELAY")
@@ -159,6 +176,7 @@
 #set( $PORT_LIST      = [ "ts1_5"                          , "ts1_5"                          ] )
 #set( $RELAY_NUM_LIST = [ "9"                              , "10"                             ] )
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 #set( $GTYPE = "RELAY")
@@ -166,6 +184,7 @@
 #set( $PORT_LIST      = [ "ts1_5"                          , "ts1_5"                          ] )
 #set( $RELAY_NUM_LIST = [ "11"                             , "12"                             ] )
 #set( $SIMULATED = false )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 
@@ -177,6 +196,7 @@
 #set( $FRELAY_DESC_LIST = [ "FastValve I/L"                               , "FastValve I/L"                               ,  "FastValve I/L"                               ,  "FastValve I/L"                               ,  "FastValve I/L"                               ,  "FastValve I/L"                               ] )
 #set( $FRELAY_LEVEL     = [ "1.0e-5"                                      , "1.0e-5"                                      ,  "1.0e-5"                                      ,  "1.0e-5"                                      ,  "1.0e-5"                                      ,  "1.0e-5"                                      ] )
 #set( $NOWRITE_LIST     = [ "FE${front_end}-VA-GAUGE-01:ILKSETSP:NOWRITE" , "FE${front_end}-VA-GAUGE-02:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-03:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-04:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-05:ILKSETSP:NOWRITE" ,  "FE${front_end}-VA-GAUGE-06:ILKSETSP:NOWRITE" ] )
+## FE/
 #parse("vacuumGauge-b-sub.vm")
 
 
@@ -194,6 +214,7 @@
 #set ( $SP2ON_LIST  = [ "1e-7"                      , "1e-7"                      , "1e-7"                      , "1e-7"                      , "1e-7"                      , "1e-7"                      ] )
 #set ( $SP2OFF_LIST = [ "2e-7"                      , "2e-7"                      , "2e-7"                      , "2e-7"                      , "2e-7"                      , "2e-7"                      ] )
 #set( $SIMULATED = false )
+## FE/
 #parse("pump-sub.vm")
 
 ## Pneumatic devices
@@ -243,6 +264,7 @@
 
 #set( $SIMULATED = false )
 
+## FE/
 #parse("valve-sub.vm")
 
 ## Fast Valve - uses special template to give more 'Arm' options
@@ -286,6 +308,7 @@
 #set( $gilk15_list = [""] )
 #set( $SIMULATED = false )
 
+## FE/
 #parse("fast-valve-sub.vm")
 
 ## PSS Shutters
@@ -336,6 +359,7 @@
 #set( $valve_tclose_hhsv_list = ["MAJOR","MAJOR"] )
 #set( $SIMULATED = false )
 
+## FE/
 #parse("valve-sub.vm")
 
 #set( $valve_tclose_modify = false )
@@ -366,6 +390,7 @@
 
 #set( $SIMULATED = false )
 
+## FE/
 #parse("mpsPermit-sub.vm")
 
 ################################################################################
@@ -379,6 +404,7 @@
 #
 # Simon Lay advised that for absorbers, HIGH => 1.5s, HIHI => 3.0s
 #
+## dlsPLC/dlsPLC_vacValveTclose.template
 file dlsPLC_vacValveTclose.template
     {
     pattern { device                    , vlvcc                      , port            , century , index, tclose_high, tclose_hihi, tclose_hsv, tclose_hhsv }
@@ -429,6 +455,7 @@ file dlsPLC_vacValveTclose.template
 # c       - Pressure ADC card ID     (new addition 31/10/08 IJG)
 # s       - Pressure ADC channel ID
 #
+## FE/
 file fvg_asyn.template
 {
 pattern { device                  ,  vlvcc , block, word, bit, c , s  }
@@ -438,6 +465,7 @@ pattern { device                  ,  vlvcc , block, word, bit, c , s  }
         { FE${front_end}-VA-FVG-04,  $VLVCC, "0"  , "6" , "7", 62, 7  }
 }
 
+## FE/
 file dig.template
 	{
 	pattern {    device  }
@@ -452,18 +480,21 @@ file dig.template
 # substitutions:
 # device - empty
 #
+## FE/asynRec.template
 file asynRec.template
 {
 pattern { device, PORT }
         { FE${front_end}-CS-IOC-01:ASYN , "" }
 }
 
+## autosave/dlssrstatus.template
 file dlssrstatus.template 
 { 
 pattern { device } 
         { FE${front_end}-CS-IOC-01:SR } 
 }
 
+## autosave/dlssrfile.template
 file dlssrfile.template 
 { 
 pattern { device, file } 
@@ -472,6 +503,7 @@ pattern { device, file }
         { FE${front_end}-CS-IOC-01:SR, 2 } 
 }
 
+## FINS/FINS.template
 file FINS.template
 {
 pattern { device                    , port}
@@ -481,6 +513,7 @@ pattern { device                    , port}
 #
 # Establish PLC reads for temperature sensors from DM1XX and DM2XX
 #
+## dlsPLC/dlsPLC_read100.template
 file dlsPLC_read100.template
     {
     pattern{ device               , port        , fins_timeout, century }
@@ -494,12 +527,14 @@ file dlsPLC_read100.template
         { $VLVCC                  , $VLVCC_PORT , "0"         , "11"    }
     }
 
+## FE/BLFEControl.template 
 file BLFEControl.template 
 {
 pattern { BEAMLINE, ABSB }
 	     { "10B"  , "02" }
 }
 
+## devIocStats/ioc.db
 file ioc.db
     {
     pattern { IOCNAME }
@@ -529,6 +564,7 @@ file ioc.db
 ##}
 
 # Radiation Monitor Reset handling
+## FE/radmonreset_asyn.template
 file radmonreset_asyn.template
 {
     pattern {device                    , port             , radmon_device                     }
@@ -536,7 +572,7 @@ file radmonreset_asyn.template
         
 }
 
-
+## dlsPLC/dlsPLC_CommsStatus.template
 file dlsPLC_CommsStatus.template
     {
     pattern { device }
