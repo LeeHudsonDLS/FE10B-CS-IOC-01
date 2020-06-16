@@ -383,7 +383,6 @@ file dlsPLC_vacValveTclose.template
     {
     pattern { device                    , vlvcc                      , port            , century , index, tclose_high, tclose_hihi, tclose_hsv, tclose_hhsv }
             { FE${front_end}-RS-ABSB-01 , FE${front_end}-VA-VLVCC-01 , vlvcc_fins_port , 11      , 11   ,  1.5       ,  3.0       , "MINOR"   , "MAJOR"     }
-            { FE${front_end}-RS-ABSB-02 , FE${front_end}-VA-VLVCC-01 , vlvcc_fins_port , 11      , 13   ,  1.5       ,  3.0       , "MINOR"   , "MAJOR"     }
     }
 
 ######### PBPM ######################################
