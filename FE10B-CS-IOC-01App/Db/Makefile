@@ -40,22 +40,18 @@ build : ../FE10B-CS-IOC-01-MASTER.substitutions\
 	cd ..; velocity FE10B-CS-IOC-01-AI.velocity > FE10B-CS-IOC-01-AI.substitutions
 ../FE10B-CS-IOC-01-VM.substitutions : ../fe.vm
 	cd ..; ant -DFE=$(FE) -f build-3.14.xml
-../FE10B-CS-IOC-01-PT100.substitutions : ../FE10B-CS-IOC-01-PT100.velocity
-	cd ..; velocity FE10B-CS-IOC-01-PT100.velocity > FE10B-CS-IOC-01-PT100.substitutions
 
-../FE10B-CS-IOC-01.substitutions: ../FE10B-CS-IOC-01-MASTER.substitutions ../FE10B-CS-IOC-01-AI.substitutions ../FE10B-CS-IOC-01-PT100.substitutions ../build.substitutions ../FE10B-CS-IOC-01-DI.substitutions  ../FE10B-CS-IOC-01-VM.substitutions 
+../FE10B-CS-IOC-01.substitutions: ../FE10B-CS-IOC-01-MASTER.substitutions ../FE10B-CS-IOC-01-AI.substitutions ../build.substitutions ../FE10B-CS-IOC-01-VM.substitutions 
 	cd ..; cat FE10B-CS-IOC-01-MASTER.substitutions \
 	FE10B-CS-IOC-01-AI.substitutions \
-	FE10B-CS-IOC-01-PT100.substitutions \
 	FE10B-CS-IOC-01-VM.substitutions \
 	build.substitutions \
 	> FE10B-CS-IOC-01.substitutions
-	cd ..; rm -f FE10B-CS-IOC-01-MASTER.substitutions FE10B-CS-IOC-01-AI.substitutions FE10B-CS-IOC-01-PT100.substitutions
+	cd ..; rm -f FE10B-CS-IOC-01-MASTER.substitutions FE10B-CS-IOC-01-AI.substitutions
 
 clean::
 	rm -f FE10B-CS-IOC-01-MASTER.substitutions
 	rm -f FE10B-CS-IOC-01-AI.substitutions
-	rm -f FE10B-CS-IOC-01-PT100.substitutions
 	rm -f FE10B-CS-IOC-01-VM.substitutions
 	rm -f FE10B-CS-IOC-01.substitutions
 
