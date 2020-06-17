@@ -28,7 +28,6 @@ buildInstall: FE10B
 
 build : ../FE10B-CS-IOC-01-MASTER.substitutions\
 	../FE10B-CS-IOC-01-AI.substitutions\
-	../FE10B-CS-IOC-01-PT100.substitutions\
 	../FE10B-CS-IOC-01.substitutions\
 	../FE10B-CS-IOC-01-VM.substitutions\
 	../build.substitutions\
