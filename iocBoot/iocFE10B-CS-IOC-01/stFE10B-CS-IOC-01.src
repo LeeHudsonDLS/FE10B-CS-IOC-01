@@ -5,15 +5,16 @@ cd "$(INSTALL)"
 epicsEnvSet "IOCSH_PS1","FE10B-CS-IOC-01 >"
 
 # Controls development network
-#epicsEnvSet("EPICS_CAS_INTF_ADDR_LIST", "172.23.240.6")
-#epicsEnvSet("EPICS_CAS_AUTO_BEACON_ADDR_LIST", "NO")
-#epicsEnvSet("EPICS_CAS_BEACON_ADDR_LIST", "172.23.240.6")
+# Set the IP address of the port where PVs are served to, ie, IP address of the server / test work station
+epicsEnvSet("EPICS_CAS_INTF_ADDR_LIST", "172.23.240.6")
+epicsEnvSet("EPICS_CAS_AUTO_BEACON_ADDR_LIST", "NO")
+epicsEnvSet("EPICS_CAS_BEACON_ADDR_LIST", "172.23.240.6")
 
 
 # Primary network
-epicsEnvSet("EPICS_CAS_INTF_ADDR_LIST", "172.23.199.4")
-epicsEnvSet("EPICS_CAS_BEACON_ADDR_LIST", "172.23.199.4")
-epicsEnvSet("EPICS_CA_AUTO_ADDR_LIST", "NO")
+#epicsEnvSet("EPICS_CAS_INTF_ADDR_LIST", "172.23.199.4")
+#epicsEnvSet("EPICS_CAS_BEACON_ADDR_LIST", "172.23.199.4")
+#epicsEnvSet("EPICS_CA_AUTO_ADDR_LIST", "NO")
 # Change this to current network broadcast address
 #epicsEnvSet("EPICS_CA_ADDR_LIST", "172.23.255.255")
 
@@ -71,12 +72,17 @@ finsUDPInit("vlvcc_fins_port", "192.168.2.140")
 #   asyn port name
 #   IP address and port
 # Gauge controllers
+
+#FE10B-VA-GCTLR-01
 drvAsynIPPortConfigure("ts1_1", "192.168.1.10:7001", 100, 0, 0)
+#FE10B-VA-GCTLR-02
 drvAsynIPPortConfigure("ts1_2", "192.168.1.10:7002", 100, 0, 0)
+#FE10B-VA-MPC-01
 drvAsynIPPortConfigure("ts1_3", "192.168.1.10:7003", 100, 0, 0)
+#FE10B-VA-MPC-02
 drvAsynIPPortConfigure("ts1_4", "192.168.1.10:7004", 100, 0, 0)
+#FE10B-VA-GCTLR-03
 drvAsynIPPortConfigure("ts1_5", "192.168.1.10:7005", 100, 0, 0)
-drvAsynIPPortConfigure("ts1_6", "192.168.1.10:7006", 100, 0, 0)
 
 ###########################################################
 # Configure stream device

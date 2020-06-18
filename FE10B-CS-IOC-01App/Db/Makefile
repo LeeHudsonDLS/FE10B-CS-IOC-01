@@ -46,7 +46,7 @@ build : ../FE10B-CS-IOC-01-MASTER.substitutions\
 	FE10B-CS-IOC-01-VM.substitutions \
 	build.substitutions \
 	> FE10B-CS-IOC-01.substitutions
-	cd ..; rm -f FE10B-CS-IOC-01-MASTER.substitutions FE10B-CS-IOC-01-AI.substitutions
+	cd ..; rm -f FE10B-CS-IOC-01-MASTER.substitutions FE10B-CS-IOC-01-AI.substitutions 
 
 clean::
 	rm -f FE10B-CS-IOC-01-MASTER.substitutions
